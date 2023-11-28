@@ -25,7 +25,6 @@ public class DataService {
             userList.add(teacher);
         }
     }
-
     private int getFreeId(Type type){
         boolean itsStudent = Type.STUDENT == type;
         int lastId = 1;
@@ -36,7 +35,6 @@ public class DataService {
             if(user instanceof Student && itsStudent){
                 lastId = ((Student) user).getStudentId() + 1;
             }
-
         }
         return lastId;
     }
@@ -65,5 +63,33 @@ public class DataService {
             }
         }
         return resultList;
+    }
+    public List<User> getAllTeachers(){
+        List<User> resultList = new ArrayList<>();
+        for(User user : userList){
+            if (user instanceof Teacher){
+                resultList.add(user);
+            }
+        }
+        return resultList;
+    }
+
+    public List<Teacher> getTeachers() {
+        List<Teacher> teachers = new ArrayList<>();
+        for(User user : userList){
+            if (user instanceof Teacher){
+                teachers.add((Teacher) user);
+            }
+        }
+        return teachers;
+    }
+    public List<Student> getStudent() {
+        List<Student> studentList = new ArrayList<>();
+        for(User user : userList){
+            if (user instanceof Student){
+                studentList.add((Student) user);
+            }
+        }
+        return studentList;
     }
 }
